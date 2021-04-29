@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	<link th:href="@{/css/styles.css}" rel="stylesheet">
+	<script th:src="@{/js/main.js}"></script>
+	
+</head>
+<body>
+		<h1>
+			Gestión de Empleos 2021 &copy 
+		</h1>
+ 		<img th:src="@{/img/logo.png}" height="200px" >
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Logo</th>
+      <th scope="col">Nombre Carrera</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Salario</th>
+      <th scope="col">Destacado</th>
+      <th scope="col">Opciones</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="tm: ${vaca}">
+      <th scope="row" th:text="${tm.id}">1</th>
+      <td >&copy <img th:src="@{/img/{img} (img=${tm.imagen})}" height="30px"></td>
+      <td th:text="${tm.nombre}"></td>
+      <td th:text="${tm.descr}"></td>
+      <td th:text="${tm.fecha}"></td>
+      <td th:text="${tm.salario}"></td>
+      <td th:text="${tm.destacado == 1? 'Destacado' : 'No Destacado'}"></td>
+      <td >
+      	<a th:href="@{/v/l/{item} (item=${tm.id})}" class="btn btn-primary">Detalle</a>
+      	<a th:href="@{/v/q(id=${tm.id})}" class="btn btn-danger">QueryStrign</a>
+      </td>
+      
+    </tr>
+    
+  </tbody>
+  </table>
+</body>
+
+ 	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+ 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Creacion de categorias.</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    
+</head>
+<body>
+
+	 <header th:insert="fragments/menu :: menu-principal"></header>
+    
+	
+	<h1>Registrar categorias</h1>
+    <main role="main">     
+      <hr>
+		<div class="container">
+			<div class="row">
+				
+				<form method="post" th:action="@{/c/save}" th:object="${categoria}">
+				  <div class="form-row">
+				   
+				    <div class="form-group col-md-6">
+				      <label for="inputNombre4">nombre</label>
+				      <input type="text" class="form-control" id="inputnombre4" name="nombre" placeholder="Nombre">
+				    </div>
+				    
+				    <div class="form-group col-md-6">
+				      <label for="inputDescripcion4">Descripcion</label>
+				      <input type="text" class="form-control" id="inputEmail4" name="desc" placeholder="Descripcion">
+				    </div>
+				    			    
+				  </div>					  
+				  <button type="submit" class="btn btn-primary">Guardar</button>
+				</form>
+				
+			</div>
+		</div>
+	</main>
+ 
+ 	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+	
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
