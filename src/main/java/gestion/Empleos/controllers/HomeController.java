@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +15,20 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.net.httpserver.HttpServer;
 
 import gestion.Empleos.model.Categorias;
 import gestion.Empleos.model.Perfil;
@@ -57,6 +64,13 @@ public class HomeController {
 		//en lugar se reemplazo con el metodo setGenericos();
 		
 		return "home";
+	}	
+	
+	@GetMapping("/login")
+	public String login(Model md) {			
+		//en lugar se reemplazo con el metodo setGenericos();
+		
+		return "formLogin";
 	}	
 	
 	@ModelAttribute //agregamos atributos al modelo vacantes y estaran disponibles para todo los metodos de este controlador
@@ -149,6 +163,17 @@ public class HomeController {
 		return "home";
 	}
 	
+	//retonsa un texto encriptado
+	@GetMapping("/bcrypt/{texto}")
+	@ResponseBody
+	public String encript(@PathVariable("texto") String texto) {
+		
+		texto = "encryptado en Bcrypt: "+ passwordEncoder.encode(texto);
+		
+		return texto;
+	}
+	
+	
 	@InitBinder // si viene vacio un campo lo sete a null
 	public void initBindin(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
@@ -199,7 +224,16 @@ public class HomeController {
 		return "acerca";
 	}
 	
-	
+	@GetMapping("/logout")
+	public String logout(
+							HttpServletRequest request, 
+							HttpServletResponse response, 
+							Authentication auth) {
+		
+		SecurityContextLogoutHandler logouthandler = new SecurityContextLogoutHandler();
+		logouthandler.logout(request, response, auth);
+		return  "redirect:/login";
+	}
 
 
 }

@@ -45,9 +45,11 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 		.antMatchers("/",
 		"/signup",
 		"/buscar",
+		"/login",
 		"/v/q**",
 		"/v/l/**",
 		"/u/create",
+		"/bcrypt/**",
 		"/u/save",		
 		"/v/index/**").permitAll()
 		// Asignar permisos a URLs por ROLES
@@ -58,7 +60,9 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 		// Todas las demás URLs de la Aplicación requieren autenticación
 		.anyRequest().authenticated()
 		// El formulario de Login no requiere autenticacion
-		.and().formLogin().permitAll();		
+		.and().formLogin().loginPage("/login").permitAll();		
+		
+		
 	}
 	
 	@Bean
