@@ -19,8 +19,13 @@
   <body>
 
     <header th:insert="fragments/menu :: menu-principal"></header>
-
+	
+	
     <main role="main">
+
+		
+		
+		
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
@@ -57,7 +62,8 @@
             <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span></h6>
             <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vacante.fecha}"></span></h6>                
             <p th:text="${vacante.descr}"></p>
-            <p><a class="btn btn-secondary" th:href="@{/v/l/{i} (i=${vacante.id})}" role="button">Ver Detalle &raquo;</a></p>            
+            <p><a class="btn btn-secondary" th:href="@{/v/l/{i} (i=${vacante.id})}" role="button">Ver Detalle &raquo;</a>            
+            <a class="btn btn-primary" th:href="@{/v/q?id={i} (i=${vacante.id})}" role="button">Ver Detalle &raquo;</a></p>            
           </div>
         </div> 
              

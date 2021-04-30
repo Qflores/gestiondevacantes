@@ -1,6 +1,7 @@
 package gestion.Empleos.ServiceJpa;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CategoriaServiceJpa implements ICategoriasService {
 	public void guardar(Categorias categoria) {
 		// TODO Auto-generated method stub
 		
-		repoCate.save(categoria);
+		repoCate.saveAndFlush(categoria);
 
 	}
 
@@ -31,8 +32,22 @@ public class CategoriaServiceJpa implements ICategoriasService {
 
 	@Override
 	public Categorias bucarById(Integer id) {
-		// TODO Auto-generated method stub
+		
+		Optional<Categorias> optional = repoCate.findById(id);
+		
+		if(optional.isPresent()) {
+			
+			return optional.get();
+		}
 		return null;
+	}
+
+	@Override
+	public void eliminarCategoria(Integer id) {
+		// TODO Auto-generated method stub
+		
+		repoCate.deleteById(id);
+		
 	}
 
 }

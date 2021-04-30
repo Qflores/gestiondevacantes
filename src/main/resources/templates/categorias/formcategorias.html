@@ -29,15 +29,18 @@
 				
 				<form method="post" th:action="@{/c/save}" th:object="${categoria}">
 				  <div class="form-row">
-				   
-				    <div class="form-group col-md-6">
-				      <label for="inputNombre4">nombre</label>
-				      <input type="text" class="form-control" id="inputnombre4" name="nombre" placeholder="Nombre">
+				  	<div th:if="${categoria.id != null}">
+				  	 	<input type="hidden" th:field="*{id}">
+				  	</div>
+				    <div class="form-group col-md-12">
+				    
+				      <label for="inputNombre">nombre</label>
+				      <input type="text" class="form-control" id="inputNombre" th:field="*{nombre}"  placeholder="Nombre">
 				    </div>
 				    
-				    <div class="form-group col-md-6">
-				      <label for="inputDescripcion4">Descripcion</label>
-				      <input type="text" class="form-control" id="inputEmail4" name="desc" placeholder="Descripcion">
+				    <div class="form-group col-md-12">
+				      <label for="inputDescripcion">Descripcion</label>
+				      <textarea type="text" class="form-control" id="inputDescripcion" th:field="*{desc}" cols="4" rows="6"  placeholder="Descripcion"></textarea>
 				    </div>
 				    			    
 				  </div>					  

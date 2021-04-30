@@ -60,4 +60,17 @@ public class UsuarioServiceJpa implements IUsuariosService {
 		
 	}
 
+	@Override
+	public Usuario buscarPorusername(String username) {
+		
+		return repoUsuario.findByUsername(username);
+	}
+
+	@Override
+	public void guardar(Usuario usuario) {
+		// TODO Auto-generated method stub
+		repoUsuario.save(usuario);
+		
+	}
+
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,11 +37,15 @@ public class CategoryController {
 		return "categorias/listacategorias";
 	}
 	
-	@RequestMapping(value="search/{id}", method= RequestMethod.GET)
+	@RequestMapping(value="/search/{id}", method= RequestMethod.GET)
 	public String crear(@PathVariable("id") int id, Model md) {
 		
 		//System.out.println("el id es: "+ id);
 		Categorias cat = serviceCategoria.bucarById(id);
+		
+		System.out.println("cat: "+ cat);
+		System.out.println("id: "+ id);
+		
 		md.addAttribute("categoria", cat);
 		
 		return "categorias/formcategorias";
@@ -54,22 +60,26 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/save", method= RequestMethod.POST)
-	public String guardar(@RequestParam("nombre") String nombre, @RequestParam("desc") String desc, Categorias cat, RedirectAttributes attributes) {
-		//System.out.println("nombre: "+nombre);
-		//System.out.println("nombre: "+desc);
-		Categorias c = new Categorias();
-		c.setId(0);
-		c.setNombre(nombre);
-		c.setDesc(desc);
-		
-		serviceCategoria.guardar(c);
-		
-		attributes.addFlashAttribute("msg","La categoria se guardo de forma correcta");
+	public String guardar(Categorias cat, RedirectAttributes attributes) {		
+		String msg= "";
+		if(cat.getId() ==null) msg = "La Categoría Se guardó con Éxito";
+		else msg = "La Categoría con Id: "+  cat.getId() +" se Actualizó con éxito";
+		serviceCategoria.guardar(cat);		
+		attributes.addFlashAttribute("msg", msg);
 		
 		return "redirect:/c/index";
 		
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String eliminar(Model md, @PathVariable("id") int id, RedirectAttributes ra) {
+		
+		System.out.println(" cat id: "+ id);		
+		serviceCategoria.eliminarCategoria(id);		
+		ra.addFlashAttribute("msg", "La categoría fue eliminada!.");
+		
+		return "redirect:/c/index";
+	}
 	
 
 }

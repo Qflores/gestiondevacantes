@@ -43,7 +43,8 @@ public class VacanteServiceJpa  implements IVacanteService{
 	@Override
 	public void saveVacante(Vacante vacante) {
 		// TODO Auto-generated method stub
-		repoVacante.save(vacante);
+	Vacante v=	repoVacante.save(vacante);
+		System.out.println("save id es:" +v.getId());
 		
 	}
 

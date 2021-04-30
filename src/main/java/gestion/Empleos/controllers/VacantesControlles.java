@@ -52,11 +52,7 @@ public class VacantesControlles {
 		
 		List<Vacante> lista =  serviceVacante.buscarDestacadas();
 		
-		md.addAttribute("vacantes",lista);	
-		/*for(Vacante v: lista) {
-			
-			System.out.println(" " +v.getCategoria());
-		}*/
+		md.addAttribute("vacantes",lista);		
 		
 		return "vacantes/listavacantes";
 	}
@@ -137,8 +133,8 @@ public class VacantesControlles {
 		
 		return "vacantes/detalle";
 	}
-	//por parametro
-	@GetMapping(value="l/{id}")
+	//por parametro+
+	@GetMapping(value="/l/{id}")
 	public String getIndex(@PathVariable("id")  int id, Model md) {	
 		
 		Vacante v = serviceVacante.searchById(id);		

@@ -7,4 +7,7 @@ import gestion.Empleos.model.Usuario;
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 	void deleteById(Integer id) ;
+	
+	Usuario findByUsername(String name);
+	
 }

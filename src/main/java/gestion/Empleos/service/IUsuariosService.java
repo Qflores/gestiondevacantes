@@ -15,4 +15,8 @@ public interface IUsuariosService {
 	List<Usuario> buscarDestacadas();
 	
 	void deleteUsuario(Integer id);
+	
+	Usuario buscarPorusername(String username);
+	
+	void guardar(Usuario usuario);
 }

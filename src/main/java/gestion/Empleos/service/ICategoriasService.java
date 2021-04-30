@@ -14,6 +14,6 @@ public interface ICategoriasService {
 	
 	Categorias bucarById(Integer id);
 	
-	
+	void eliminarCategoria(Integer id);
 
 }

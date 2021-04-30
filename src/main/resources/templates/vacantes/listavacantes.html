@@ -85,10 +85,10 @@
                                
               </tbody>
             </table>
-            <nav th:if="${vacantes.totalPages > 0}" aria-label="Page navigation example" >
+            <nav class="{vacantes.totalPages > 0}" aria-label="Page navigation example" >
 				<ul class="pagination">
-				<li class="page-item"><a th:href="@{/v/indexPaginate(page=${vacantes.number - 1})}" class="page-link">Anterior</a></li>
-				<li class="page-item"><a th:href="@{/v/indexPaginate(page=${vacantes.number + 1})}" class="page-link">Siguiente</a></li>
+				<li class="page-item"><a href="{/v/indexPaginate(page=${vacantes.number - 1})}" class="page-link">Anterior</a></li>
+				<li class="page-item"><a href="{/v/indexPaginate(page=${vacantes.number + 1})}" class="page-link">Siguiente</a></li>
 				</ul>
 			</nav>
             
@@ -98,14 +98,7 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <p>
-          &copy; 2019 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Autor: Iv&aacute;n E. Tinajero D&iacute;az | &middot; <a href="#">Privacy</a>
-          &middot; <a href="#">Terms</a>
-        </p>
-      </div>
-    </footer>
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
