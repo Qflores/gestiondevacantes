@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Utileria {
 	
-	@SuppressWarnings("finally")
+	
 	public static String guardarArchivos(MultipartFile multiPart, String ruta) {
 		
 		//obtenermos el nombre del archivo

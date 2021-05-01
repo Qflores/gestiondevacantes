@@ -28,10 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sun.net.httpserver.HttpServer;
-
-import gestion.Empleos.model.Categorias;
-import gestion.Empleos.model.Perfil;
 import gestion.Empleos.model.Usuario;
 import gestion.Empleos.model.Vacante;
 import gestion.Empleos.service.ICategoriasService;
@@ -134,7 +130,7 @@ public class HomeController {
 			System.out.println("usario: "+usuario);
 		}
 		
-		Usuario user = serviceUsuarios.buscarPorusername(username);		
+		serviceUsuarios.buscarPorusername(username);		
 		
 		
 		return "redirect:/";
